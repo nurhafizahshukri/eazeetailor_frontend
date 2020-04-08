@@ -15,6 +15,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   void _doNothing() {}
   String userName;
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -23,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         drawer: buildDrawer(context),
         appBar: buildAppBar(context),
+        bottomNavigationBar: buildBottomNavigationBar(),        
       ),
     );
   }
@@ -76,7 +78,6 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
         leading: Builder(
@@ -103,6 +104,35 @@ class _HomeScreenState extends State<HomeScreen> {
                 Navigator.of(context).pushReplacementNamed(LOGIN_SCREEN);
               }),
         ],
+      );
+  }
+
+  BottomNavigationBar buildBottomNavigationBar() {
+    return BottomNavigationBar(
+        currentIndex: _currentIndex,
+        backgroundColor: Colors.white,
+        type: BottomNavigationBarType.fixed,
+        iconSize: 30,
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            title: Text('HOME'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.library_books),
+            title: Text('VIEW'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline),
+            title: Text('PROFILE'),
+          ),
+        ],
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+          });
+        },
+        selectedItemColor: Colors.cyan[900],
       );
   }
 }
