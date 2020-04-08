@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
   final tabs = [
     
     HomeAction(),
-    Container(color: Colors.green, child: Center(child: Text('View'))),
+    AppointmentAction(),
     Container(color: Colors.green, child: Center(child: Text('Profile'))),
   ];
 
@@ -542,5 +542,41 @@ class HomeAction extends StatelessWidget {
   }
 }
 
+
+class AppointmentAction extends StatelessWidget {
+  final List<String> items = new List<String>.generate(5, (i)=>"${i + 1}");
+
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      body: new ListView.builder(
+        itemCount: items.length,
+        itemBuilder: (context, int index) {
+          return new Dismissible(
+            key: new Key(items[index]),
+            onDismissed: (direction) {
+             items.removeAt(index);
+             Scaffold.of(context).showSnackBar(new SnackBar(
+               content: new Text("Appointment have been deleted"),
+             ));
+            },
+            background: new Container(
+              color: Colors.red
+            ),
+            child: new ListTile(
+              leading: Icon(Icons.event_note),
+              title: Text('Appointment ${items[index]}'),
+              subtitle: Text('Oder: Kurung Kedah | Size: XS'),
+              trailing: Text('Approved',
+                        style: TextStyle(
+                              color: Colors.green[700],
+                              fontWeight: FontWeight.bold),),
+            )
+            );
+        }
+      ),
+    );
+  }
+}
 
 
