@@ -15,19 +15,68 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   void _doNothing() {}
   String userName;
-  
 
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
+        drawer: buildDrawer(context),
         appBar: buildAppBar(context),
       ),
     );
   }
 
+  Drawer buildDrawer(BuildContext context) {
+    return Drawer(
+        child: ListView(
+        padding: EdgeInsets.zero,
+        children: <Widget>[
+          DrawerHeader(
+            child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: <Widget>[
+                  Text('Notification',
+                    style: GoogleFonts.lobster(
+                      textStyle: TextStyle(
+                          color: Colors.black,
+                          fontSize: 25,
+                      ),),
+                    ),
+                    SizedBox(
+                      height: 30,
+                    ),
+                      ],
+                      
+                    ),
+            decoration: BoxDecoration(
+              color: Colors.cyan,
+            ),
+          ),
+          ListTile(
+            title: Text('Notification 1'),
+            onTap: () {
+              // Update the state of the app
+              // ...
+              // Then close the drawer
+              Navigator.pop(context);
+            },
+          ),
+          ListTile(
+            title: Text('Notification 2'),
+            onTap: () {
+              // Update the state of the app
+              // ...
+              // Then close the drawer
+              Navigator.pop(context);
+            },
+          ),
+        ],
+      ),
+    );
+  }
 
+  
   AppBar buildAppBar(BuildContext context) {
     return AppBar(
         leading: Builder(
