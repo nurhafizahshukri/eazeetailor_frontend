@@ -17,6 +17,13 @@ class _HomeScreenState extends State<HomeScreen> {
   String userName;
   int _currentIndex = 0;
 
+  final tabs = [
+    
+    Container(color: Colors.green, child: Center(child: Text('Home'))),
+    Container(color: Colors.green, child: Center(child: Text('View'))),
+    Container(color: Colors.green, child: Center(child: Text('Profile'))),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -24,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         drawer: buildDrawer(context),
         appBar: buildAppBar(context),
+        body: tabs[_currentIndex],
         bottomNavigationBar: buildBottomNavigationBar(),        
       ),
     );
