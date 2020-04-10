@@ -4,13 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class KurungKedah extends StatefulWidget {
+class Kebarung extends StatefulWidget {
   
   @override
-  _KurungKedahState createState() => _KurungKedahState();
+  _KebarungState createState() => _KebarungState();
 }
 
-class _KurungKedahState extends State<KurungKedah> {
+class _KebarungState extends State<Kebarung> {
   int photoIndex=0;
   int selectedRadio;
 
@@ -27,9 +27,9 @@ class _KurungKedahState extends State<KurungKedah> {
   }
 
   List <String> photos = [
-    'assets/images/pict8.jpg',
-    'assets/images/pict9.jpg',
-    'assets/images/pict10.jpg',
+    'assets/images/pict2.jpg',
+    'assets/images/pict3.jpeg',
+    'assets/images/pict4.jpeg',
   ];
 
   void _doNothing() {}
@@ -45,7 +45,7 @@ class _KurungKedahState extends State<KurungKedah> {
           actions: <Widget>[
             IconButton(
               icon: new Icon(Icons.search),
-              onPressed: _doNothing,n
+              onPressed: _doNothing,
             ),
             IconButton(
                 icon: new Icon(Icons.power_settings_new),
@@ -60,7 +60,7 @@ class _KurungKedahState extends State<KurungKedah> {
             //padding: EdgeInsets.all(50),
             children: <Widget> [
               Padding(padding: EdgeInsets.only(top: 20.0),),
-              Text('KURUNG KEDAH',
+              Text('KEBARUNG',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 20.0,
@@ -99,7 +99,7 @@ class _KurungKedahState extends State<KurungKedah> {
                       color: Colors.white,
                   ),
                   child: Center(
-                    child: Text('Baju yang ringkas, tidak berpesak dan agak singkat anggaran bawah punggung sesuai dipadankan dengan potongan kain batik.',
+                    child: Text('Kebaya labuh di bawah lutut dan mempunyai potongan kembang dari paras pinggul dengan padanan kain lipat batik.',
                       textAlign: TextAlign.center,
                     )
                   ),
