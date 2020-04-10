@@ -3,6 +3,9 @@ import 'package:eazeetailor/Screens/HomeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:eazeetailor/Screens/AppointmentForm.dart';
+
+import '../Screens/AppointmentForm.dart';
 
 class KurungKedah extends StatefulWidget {
   
@@ -45,7 +48,7 @@ class _KurungKedahState extends State<KurungKedah> {
           actions: <Widget>[
             IconButton(
               icon: new Icon(Icons.search),
-              onPressed: _doNothing,n
+              onPressed: _doNothing,
             ),
             IconButton(
                 icon: new Icon(Icons.power_settings_new),
@@ -183,7 +186,7 @@ class _KurungKedahState extends State<KurungKedah> {
                   onPressed: () {
                     Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => HomeScreen(),
+                            MaterialPageRoute(builder: (context) => AppointmentScreen(),
                         ),
                       );
                   },
