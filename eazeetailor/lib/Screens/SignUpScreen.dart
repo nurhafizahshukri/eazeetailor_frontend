@@ -225,9 +225,7 @@ class SignUpState extends State<SignUpScreen>
                                                 .toString())) {
                                           var root = MaterialPageRoute(
                                               builder: (context) =>
-                                                  new HomeScreen(name_controller
-                                                      .value.text
-                                                      .toString()));
+                                                  new HomeScreen());
 
                                           Navigator.of(context).pop(LOGIN_SCREEN);
 
