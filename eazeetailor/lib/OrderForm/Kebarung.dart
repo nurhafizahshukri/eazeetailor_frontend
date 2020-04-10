@@ -3,6 +3,9 @@ import 'package:eazeetailor/Screens/HomeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:eazeetailor/Screens/AppointmentForm.dart';
+
+import '../Screens/AppointmentForm.dart';
 
 class Kebarung extends StatefulWidget {
   
@@ -183,7 +186,7 @@ class _KebarungState extends State<Kebarung> {
                   onPressed: () {
                     Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => HomeScreen(),
+                            MaterialPageRoute(builder: (context) => AppointmentScreen(),
                         ),
                       );
                   },
