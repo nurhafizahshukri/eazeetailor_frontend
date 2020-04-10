@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:eazeetailor/Screens/HomeScreen.dart';
 
 class AppointmentScreen extends StatefulWidget {
   
@@ -102,6 +103,34 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                  
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                FlatButton(
+                  child: Text('Cancel'),
+                  onPressed: () {
+                    Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeScreen(),
+                        ),
+                      );
+                  },
+                  ),
+                RaisedButton(
+                  color: Colors.cyan,
+                  onPressed: () {
+                    Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => HomeScreen(),
+                        ),
+                      );
+                  },
+                  child: const Text(
+                    'Submit',
+                    style: TextStyle(fontSize: 20)
+                    ),
+                ),
+              ],)
              
             ]),     ),  
         );
