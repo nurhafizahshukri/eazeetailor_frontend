@@ -90,6 +90,19 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                     return DateTimeField.convert(time);
                   },
                 ), ),
+                Text('Phone Number',
+                textAlign: TextAlign.center,
+                style: TextStyle(fontSize: 15),),
+              Padding(padding: EdgeInsets.only(left:30, right: 30, bottom: 15,top: 15),
+                child: TextFormField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(borderRadius: BorderRadius.circular(3)),
+                    labelText: 'Phone Number (Optional)',
+                  ),
+                 
+                ),
+              ),
+             
             ]),     ),  
         );
         
