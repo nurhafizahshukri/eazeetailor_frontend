@@ -4,10 +4,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+
+import 'package:eazeetailor/OrderForm/Kebarung.dart';
+import 'package:eazeetailor/OrderForm/Jubah.dart';
+
 class HomeScreen extends StatefulWidget {
   var userName;
 
-  HomeScreen(this.userName);
+  // HomeScreen(this.userName);
 
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -15,7 +19,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   void _doNothing() {}
-  String userName;
+  // String userName;
   int _currentIndex = 0;
 
   final tabs = [
@@ -296,7 +300,7 @@ class HomeAction extends StatelessWidget {
                         onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => KurungKedah(),
+                            MaterialPageRoute(builder: (context) => Jubah(),
                         ),
                       );
                     },
@@ -412,7 +416,7 @@ class HomeAction extends StatelessWidget {
                       onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => KurungKedah(),
+                            MaterialPageRoute(builder: (context) => Kebarung(),
                         ),
                       );
                     },

@@ -144,7 +144,7 @@ class LogInScreenState extends State<LogInScreen>
 
 
                                           var root=MaterialPageRoute(builder: (context)=>
-                                        new HomeScreen(email_controller.value.text.toString()));
+                                        new HomeScreen());
                                         //  Navigator.of(context).pop(LOGIN_SCREEN);
                                           Navigator.pushReplacement(context, root);
 
