@@ -2,11 +2,11 @@ import 'package:eazeetailor/Constant/Constant.dart';
 import 'package:eazeetailor/OrderForm/KurungKedah.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:url_launcher/url_launcher.dart' as launcher;
 import 'package:eazeetailor/info_card.dart';
 import 'package:eazeetailor/OrderForm/Kebarung.dart';
 import 'package:eazeetailor/OrderForm/Jubah.dart';
+//import 'package:flushbar/flushbar.dart';
 
 const url = 'http://github.com/nurhafizahshukri/projectMAP.git';
 const email = 'eazeetailor@gmail.com';
@@ -42,6 +42,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return DefaultTabController(
       length: 4,
       child: Scaffold(
+        
         drawer: buildDrawer(context),
         appBar: buildAppBar(context),
         body: tabs[_currentIndex],
@@ -55,18 +56,18 @@ class _HomeScreenState extends State<HomeScreen> {
       child: ListView(
         padding: EdgeInsets.zero,
         children: <Widget>[
+          
           DrawerHeader(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Text(
                   'Notification',
-                  style: GoogleFonts.lobster(
-                    textStyle: TextStyle(
+                  style: TextStyle(
                       color: Colors.black,
                       fontSize: 25,
                     ),
-                  ),
+                 
                 ),
                 SizedBox(
                   height: 30,
@@ -78,23 +79,34 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           ListTile(
-            title: Text('Notification 1'),
+            title: Text('Appointment Status',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),),
+            subtitle: Text('Your booking appoinment was rejected',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),),
             onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
+              AppointmentAction();
             },
           ),
           ListTile(
-            title: Text('Notification 2'),
+            title: Text('Order Submitted',
+                    style: TextStyle(
+                      fontSize: 18,
+                    ),),
+            subtitle: Text('Your order have been submitted',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),),
             onTap: () {
-              // Update the state of the app
-              // ...
-              // Then close the drawer
-              Navigator.pop(context);
+              
             },
           ),
+          
         ],
       ),
     );
@@ -112,11 +124,7 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Color(0xFF0097A7),
       centerTitle: true,
       title: new Text(
-        "EAZEE TAILOR",
-        style: GoogleFonts.pacifico(
-            //textStyle: TextStyle(color: Colors.black, letterSpacing: .5),
-            ),
-      ),
+        "EAZEE TAILOR"),
       actions: <Widget>[
         IconButton(
           icon: new Icon(Icons.search),
@@ -201,11 +209,10 @@ class HomeAction extends StatelessWidget {
                         children: <Widget>[
                           Text(
                             "Fashion Sale",
-                            style: GoogleFonts.lobster(
-                              textStyle: TextStyle(
+                            style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 35,
-                              ),
+                              
                             ),
                           ),
                           SizedBox(
@@ -568,12 +575,13 @@ class HomeAction extends StatelessWidget {
 }
 
 class AppointmentAction extends StatelessWidget {
-  final List<String> items = new List<String>.generate(5, (i) => "${i + 1}");
+  final List<String> items = new List<String>.generate(1, (i) => "${i + 1}");
 
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
       body: new ListView.builder(
+        padding: EdgeInsets.only(top: 20),
           itemCount: items.length,
           itemBuilder: (context, int index) {
             return new Dismissible(
@@ -581,6 +589,7 @@ class AppointmentAction extends StatelessWidget {
                 onDismissed: (direction) {
                   items.removeAt(index);
                   Scaffold.of(context).showSnackBar(new SnackBar(
+                    behavior: SnackBarBehavior.floating,
                     content: new Text("Appointment have been deleted"),
                   ));
                 },
@@ -588,11 +597,11 @@ class AppointmentAction extends StatelessWidget {
                 child: new ListTile(
                   leading: Icon(Icons.event_note),
                   title: Text('Appointment ${items[index]}'),
-                  subtitle: Text('Oder: Kurung Kedah | Size: XS'),
+                  subtitle: Text('Oder: Kebarung \nSize: XS \nFabric Type: Songket'),
                   trailing: Text(
-                    'Approved',
+                    'Rejected',
                     style: TextStyle(
-                        color: Colors.green[700], fontWeight: FontWeight.bold),
+                        color: Colors.red[700], fontWeight: FontWeight.bold),
                   ),
                 ));
           }),
@@ -601,7 +610,7 @@ class AppointmentAction extends StatelessWidget {
 }
 
 class ProfileAction extends StatelessWidget {
-  void _doNothing() {}
+ 
   void _showDialog(BuildContext context, {String title, String msg}) {
     final dialog = AlertDialog(
       title: Text(title),

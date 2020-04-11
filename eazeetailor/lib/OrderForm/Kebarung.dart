@@ -30,7 +30,7 @@ class _KebarungState extends State<Kebarung> {
   }
 
   List <String> photos = [
-    'assets/images/pict2.jpg',
+    'assets/images/kb1.jpg',
     'assets/images/pict3.jpeg',
     'assets/images/pict4.jpeg',
   ];

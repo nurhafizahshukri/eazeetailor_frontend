@@ -157,7 +157,7 @@ class LogInScreenState extends State<LogInScreen>
                                         style: new TextStyle(
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      color: Color(0xFF54C5F8),
+                                      color: Colors.teal,
                                       textColor: Colors.white,
                                       elevation: 5.0,
                                       padding: EdgeInsets.only(
