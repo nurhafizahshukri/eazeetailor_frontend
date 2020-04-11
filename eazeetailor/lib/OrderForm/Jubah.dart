@@ -184,14 +184,20 @@ class _JubahState extends State<Jubah> {
                   onPressed: () {
                     Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => AppointmentScreen(),
+                            MaterialPageRoute(builder: (context) => HomeScreen(),
                         ),
                       );
                   },
                   ),
                 RaisedButton(
                   color: Colors.cyan,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => AppointmentScreen(),
+                        ),
+                      );
+                  },
                   child: const Text(
                     'Next',
                     style: TextStyle(fontSize: 20)

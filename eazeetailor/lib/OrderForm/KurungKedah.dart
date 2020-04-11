@@ -186,14 +186,20 @@ class _KurungKedahState extends State<KurungKedah> {
                   onPressed: () {
                     Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => AppointmentScreen(),
+                            MaterialPageRoute(builder: (context) => HomeScreen(),
                         ),
                       );
                   },
                   ),
                 RaisedButton(
                   color: Colors.cyan,
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => AppointmentScreen(),
+                        ),
+                      );
+                  },
                   child: const Text(
                     'Next',
                     style: TextStyle(fontSize: 20)
