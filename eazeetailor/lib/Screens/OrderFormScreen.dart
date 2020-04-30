@@ -70,6 +70,8 @@ class _OrderFormState extends State<OrderForm> {
                 CarouselSlider(
                   height: 300.0,
                   enlargeCenterPage: true,
+                  enableInfiniteScroll: false,
+                  initialPage: 1,
                   items: widget.outfits.imgurl.map((item) => Container(
                   child: Center(
                     child: Image.asset(item, fit: BoxFit.cover, width: 1000)

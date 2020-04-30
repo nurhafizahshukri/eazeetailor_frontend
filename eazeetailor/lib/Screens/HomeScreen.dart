@@ -1,23 +1,12 @@
 import 'package:eazeetailor/Constant/Constant.dart';
-import 'package:eazeetailor/OrderForm/KurungKedah.dart';
 import 'package:eazeetailor/Screens/BookingScreen.dart';
 import 'package:eazeetailor/Screens/ProfileScreen.dart';
 import 'package:eazeetailor/models/OutfitData.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'package:eazeetailor/OrderForm/Kebarung.dart';
-import 'package:eazeetailor/OrderForm/Jubah.dart';
-
 import 'OrderFormScreen.dart';
-//import 'package:flushbar/flushbar.dart';
-
-
-
 class HomeScreen extends StatefulWidget {
   
-  // HomeScreen(this.userName);
-
   @override
   _HomeScreenState createState() => _HomeScreenState();
 }
@@ -261,12 +250,12 @@ class HomeAction extends StatelessWidget {
                       title: "Kurung Kedah", 
                       image:'assets/images/kurungkedah.jpg',
                       colors: Colors.yellow[100],
-                      route: OrderForm(outfit[1])),
+                      route: OrderForm(outfit[0])),
                     FashionInkwell(
                       title: "Jubah", 
                       image:'assets/images/jubah.jpeg',
                       colors: Colors.pink[100],
-                      route: OrderForm(outfit[2])),
+                      route: OrderForm(outfit[1])),
                     FashionInkwell(
                       title: "Kurung Songket",
                       image: 'assets/images/kurungsongket.jpg',
@@ -281,7 +270,7 @@ class HomeAction extends StatelessWidget {
                       title: "Kebarung",
                       image: 'assets/images/kebarung.jpg',
                       colors: Colors.orange[100],
-                      route: OrderForm(outfit[0])),
+                      route: OrderForm(outfit[2])),
                     FashionInkwell(
                       title: "Kurung Cotton",
                       image: 'assets/images/kurungcotton.jpg',
