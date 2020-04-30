@@ -1,5 +1,5 @@
 import 'package:eazeetailor/Constant/Constant.dart';
-import 'package:eazeetailor/Screens/HomeScreen.dart';
+import 'package:eazeetailor/MainScreens/HomeScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';

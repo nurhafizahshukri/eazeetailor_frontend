@@ -1,12 +1,13 @@
 import 'package:eazeetailor/Constant/Constant.dart';
-import 'package:eazeetailor/Screens/BookingScreen.dart';
-import 'package:eazeetailor/Screens/ProfileScreen.dart';
-import 'package:eazeetailor/Screens/SizingScreen.dart';
+import 'package:eazeetailor/SubScreens/AppointmentForm.dart';
+import 'package:eazeetailor/MainScreens/BookingScreen.dart';
+import 'package:eazeetailor/MainScreens/ProfileScreen.dart';
+import 'package:eazeetailor/MainScreens/SizingScreen.dart';
+import 'package:eazeetailor/SubScreens/OrderFormScreen.dart';
 import 'package:eazeetailor/models/OutfitData.dart';
 import 'package:eazeetailor/models/SizingData.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'OrderFormScreen.dart';
 class HomeScreen extends StatefulWidget {
   
   @override
@@ -213,19 +214,29 @@ class HomeAction extends StatelessWidget {
                           SizedBox(
                             height: 30,
                           ),
-                          Container(
-                            height: 50,
-                            margin: EdgeInsets.symmetric(horizontal: 40),
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10),
-                                color: Colors.white),
-                            child: Center(
-                                child: Text(
-                              "Book Your Appointment Now",
-                              style: TextStyle(
-                                  color: Colors.grey[900],
-                                  fontWeight: FontWeight.bold),
-                            )),
+                          InkWell(
+                            child: Container(
+                              height: 50,
+                              margin: EdgeInsets.symmetric(horizontal: 40),
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  color: Colors.white),
+                              child: Center(
+                                  child: Text(
+                                "Book Your Appointment Now",
+                                style: TextStyle(
+                                    color: Colors.grey[900],
+                                    fontWeight: FontWeight.bold),
+                              )),
+                            ),
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => AppointmentScreen(),
+                                ),
+                              );
+                            },
                           ),
                           SizedBox(
                             height: 30,

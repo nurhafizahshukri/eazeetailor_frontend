@@ -1,10 +1,10 @@
 import 'package:eazeetailor/Constant/Constant.dart';
-import 'package:eazeetailor/Screens/HomeScreen.dart';
+import 'package:eazeetailor/MainScreens/HomeScreen.dart';
 import 'package:eazeetailor/models/class.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:eazeetailor/Screens/AppointmentForm.dart';
+import 'package:eazeetailor/SubScreens/AppointmentForm.dart';
 
 class OrderForm extends StatefulWidget {
 

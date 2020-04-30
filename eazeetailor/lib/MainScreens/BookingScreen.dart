@@ -24,7 +24,7 @@ class AppointmentAction extends StatelessWidget {
                 child: new ListTile(
                   leading: Icon(Icons.event_note),
                   title: Text('Appointment ${items[index]}'),
-                  subtitle: Text('Oder: Kebarung \nSize: XS \nFabric Type: Songket'),
+                  subtitle: Text('Date: \nTime:'),
                   trailing: Text(
                     'Rejected',
                     style: TextStyle(

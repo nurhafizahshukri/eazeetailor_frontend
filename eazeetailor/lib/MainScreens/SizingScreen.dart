@@ -1,5 +1,5 @@
 
-// import 'package:eazeetailor/Screens/updateSizeScreen.dart';
+import 'package:eazeetailor/Screens/updateSizingScreen.dart';
 import 'package:eazeetailor/models/class.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -21,15 +21,14 @@ class _SizingScreenState extends State<SizingScreen> {
           Members returnData = await Navigator.push(
           context, 
           MaterialPageRoute(
-            builder: (context) => null
-              // UpdateSizeScreen(Members.copy(widget.memberSize[index])),
+            builder: (context) => 
+              UpdateSizeScreen(Members.copy(widget.memberSize[index])),
           ),
         );
 
         if (returnData != null) {
           setState ( () => widget.memberSize[index] = returnData);
         }
-
   }
 
   @override

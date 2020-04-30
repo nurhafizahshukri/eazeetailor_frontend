@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:eazeetailor/Constant/Constant.dart';
-import 'package:eazeetailor/Screens/SplashScreen.dart';
-import 'package:eazeetailor/Screens/LoginScreen.dart';
-import 'package:eazeetailor/Screens/SignUpScreen.dart';
+import 'package:eazeetailor/MainScreens/SplashScreen.dart';
+import 'package:eazeetailor/MainScreens/LoginScreen.dart';
+import 'package:eazeetailor/MainScreens/SignUpScreen.dart';
 
 main() {
 

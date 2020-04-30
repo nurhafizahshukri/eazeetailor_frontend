@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
-import 'package:eazeetailor/Screens/HomeScreen.dart';
+import 'package:eazeetailor/MainScreens/HomeScreen.dart';
 
 class AppointmentScreen extends StatefulWidget {
   

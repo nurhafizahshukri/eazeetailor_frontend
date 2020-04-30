@@ -1,4 +1,4 @@
-import 'package:eazeetailor/Screens/SettingScreen.dart';
+import 'package:eazeetailor/SubScreens/SettingScreen.dart';
 import 'package:url_launcher/url_launcher.dart' as launcher;
 import 'package:eazeetailor/info_card.dart';
 import 'package:flutter/cupertino.dart';
