@@ -1,23 +1,18 @@
 import 'package:eazeetailor/Constant/Constant.dart';
 import 'package:eazeetailor/OrderForm/KurungKedah.dart';
+import 'package:eazeetailor/Screens/BookingScreen.dart';
+import 'package:eazeetailor/Screens/ProfileScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart' as launcher;
-import 'package:eazeetailor/info_card.dart';
+
 import 'package:eazeetailor/OrderForm/Kebarung.dart';
 import 'package:eazeetailor/OrderForm/Jubah.dart';
 //import 'package:flushbar/flushbar.dart';
 
-const url = 'http://github.com/nurhafizahshukri/projectMAP.git';
-const email = 'eazeetailor@gmail.com';
-const phone = '+60 14 156 1631';
-const location = 'Johor, Malaysia';
-const username = 'Taylor Swift';
-const PasswordCredential = 'tswift';
+
 
 class HomeScreen extends StatefulWidget {
-  var userName;
-
+  
   // HomeScreen(this.userName);
 
   @override
@@ -31,10 +26,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final tabs = [
     HomeAction(),
+    Container(color: Colors.green, child: Center(child: Text('ORDER'))),
     AppointmentAction(),
+    Container(color: Colors.green, child: Center(child: Text('SIZE'))),
     ProfileAction(),
-    SettingsAction()
-    //Container(color: Colors.green, child: Center(child: Text('Profile'))),
   ];
 
   @override
@@ -152,15 +147,19 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.library_books),
-          title: Text('VIEW'),
+          title: Text('ORDER'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.perm_contact_calendar),
+          title: Text('BOOKING'),
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.people),
+          title: Text('SIZING'),
         ),
         BottomNavigationBarItem(
           icon: Icon(Icons.person_outline),
           title: Text('PROFILE'),
-        ),
-        BottomNavigationBarItem(
-          icon: Icon(Icons.settings),
-          title: Text('SETTINGS'),
         ),
       ],
       onTap: (index) {
@@ -574,299 +573,8 @@ class HomeAction extends StatelessWidget {
   }
 }
 
-class AppointmentAction extends StatelessWidget {
-  final List<String> items = new List<String>.generate(1, (i) => "${i + 1}");
 
-  @override
-  Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new ListView.builder(
-        padding: EdgeInsets.only(top: 20),
-          itemCount: items.length,
-          itemBuilder: (context, int index) {
-            return new Dismissible(
-                key: new Key(items[index]),
-                onDismissed: (direction) {
-                  items.removeAt(index);
-                  Scaffold.of(context).showSnackBar(new SnackBar(
-                    behavior: SnackBarBehavior.floating,
-                    content: new Text("Appointment have been deleted"),
-                  ));
-                },
-                background: new Container(color: Colors.red),
-                child: new ListTile(
-                  leading: Icon(Icons.event_note),
-                  title: Text('Appointment ${items[index]}'),
-                  subtitle: Text('Oder: Kebarung \nSize: XS \nFabric Type: Songket'),
-                  trailing: Text(
-                    'Rejected',
-                    style: TextStyle(
-                        color: Colors.red[700], fontWeight: FontWeight.bold),
-                  ),
-                ));
-          }),
-    );
-  }
-}
 
-class ProfileAction extends StatelessWidget {
- 
-  void _showDialog(BuildContext context, {String title, String msg}) {
-    final dialog = AlertDialog(
-      title: Text(title),
-      content: Text(msg),
-      actions: <Widget>[
-        RaisedButton(
-          color: Colors.white,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text(
-            'Close',
-            style: TextStyle(color: Colors.black45),
-          ),
-        ),
-      ],
-    );
-    showDialog(context: context, builder: (x) => dialog);
-  }
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Padding(padding: EdgeInsets.only(bottom: 30, top: 1),
-              child: Text(
-                'PROFILE',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 20.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              ),
-              
-              CircleAvatar(
-                radius: 60,
-                backgroundImage: AssetImage('assets/images/profile.png'),
-              ),
-              Text(
-                '',
-                style: TextStyle(
-                  fontSize: 0.0,
-                  color: Colors.red,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Text(
-                '',
-                style: TextStyle(
-                  fontSize: 5.0,
-                  color: Colors.teal[50],
-                  letterSpacing: 2.5,
-                  fontWeight: FontWeight.bold,
-                  fontFamily: 'Source Sans Pro',
-                ),
-              ),
-              SizedBox(
-                height: 15,
-                width: 150,
-                child: Divider(
-                  color: Colors.white,
-                ),
-              ),
-              InfoCard(
-                text: username,
-                icon: Icons.perm_identity,
-                onPressed: () {
-                  print('username');
-                },
-              ),
-              InfoCard(
-                text: location,
-                icon: Icons.location_city,
-                onPressed: () {
-                  print('location');
-                },
-              ),
-              InfoCard(
-                text: phone,
-                icon: Icons.phone,
-                onPressed: () async {
-                  String removeSpaceFromPhoneNumber =
-                      phone.replaceAll(new RegExp(r"\s+\b|\b\s"), "");
-                  final phoneCall = 'tel:$removeSpaceFromPhoneNumber';
 
-                  if (await launcher.canLaunch(phoneCall)) {
-                    await launcher.launch(phoneCall);
-                  } else {
-                    _showDialog(
-                      context,
-                      title: 'Sorry',
-                      msg: 'Phone number can not be called. Please try again!',
-                    );
-                  }
-                },
-              ),
-              InfoCard(
-                text: email,
-                icon: Icons.email,
-                onPressed: () async {
-                  if (await launcher.canLaunch(url)) {
-                    await launcher.launch(url);
-                  } else {
-                    _showDialog(
-                      context,
-                      title: 'Sorry',
-                      msg: 'Email can not be send. Please try again!',
-                    );
-                  }
-                },
-              ),
-            ],
-          ),
-        ),
-        floatingActionButton:
-            Row(mainAxisAlignment: MainAxisAlignment.end, children: <Widget>[
-          FloatingActionButton.extended(
-              label: Text('Update'),
-              backgroundColor: Colors.teal,
-              onPressed: () {})
-        ]));
-  }
-}
 
-class SettingsAction extends StatefulWidget {
-  @override
-  _SettingsActionState createState() => _SettingsActionState();
-}
-
-class _SettingsActionState extends State<SettingsAction> {
-  bool _isSelected = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade200,
-      appBar: AppBar(
-        elevation: 0,
-        brightness: Brightness.light,
-        iconTheme: IconThemeData(color: Colors.black),
-        backgroundColor: Colors.grey.shade200,
-        title: Text(
-          'Settings',
-          style: TextStyle(color: Colors.teal[900]),
-        ),
-      ),
-      body: Stack(
-        fit: StackFit.expand,
-        children: <Widget>[
-          SingleChildScrollView(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Card(
-                  elevation: 8.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  color: Colors.cyan[800],
-                  child: ListTile(
-                    onTap: () {
-                      //open edit profile
-                    },
-                    title: Text(
-                      "Taylor Swift",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w500,
-                      ),
-                    ),
-                    leading: CircleAvatar(
-                      backgroundImage: AssetImage('assets/images/profile.png'),
-                    ),
-                    trailing: Icon(
-                      Icons.edit,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10.0),
-                Card(
-                  elevation: 4.0,
-                  margin: const EdgeInsets.fromLTRB(32.0, 8.0, 32.0, 16.0),
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10.0)),
-                  child: Column(
-                    children: <Widget>[
-                      ListTile(
-                        leading: Icon(
-                          Icons.lock_outline,
-                          color: Colors.cyan,
-                        ),
-                        title: Text("Change Password"),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {
-                          //open change password
-                        },
-                      ),
-                      _buildDivider(),
-                      ListTile(
-                        leading: Icon(
-                          Icons.language,
-                          color: Colors.cyan,
-                        ),
-                        title: Text("Change Language"),
-                        trailing: Icon(Icons.keyboard_arrow_right),
-                        onTap: () {
-                          //open change language
-                        },
-                      ),
-                    ],
-                  ),
-                ),
-                const SizedBox(height: 20.0),
-                Text(
-                  'Notifications Settings',
-                  style: TextStyle(
-                    fontSize: 20.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.cyan[900],
-                  ),
-                ),
-                SwitchListTile(
-                  dense: true,
-                  activeColor: Colors.greenAccent[700],
-                  contentPadding: const EdgeInsets.all(0),
-                  value: _isSelected,
-                  title: Text("Receive Notification"),
-                  onChanged: (bool newValue) {
-                    setState(() {
-                      _isSelected = newValue;
-                    });
-                  },
-                ),
-                
-              ],
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Container _buildDivider() {
-    return Container(
-      margin: const EdgeInsets.symmetric(
-        horizontal: 8.0,
-      ),
-      width: double.infinity,
-      height: 1.0,
-      color: Colors.grey.shade400,
-    );
-  }
-}
