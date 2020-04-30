@@ -1,7 +1,9 @@
 import 'package:eazeetailor/Constant/Constant.dart';
 import 'package:eazeetailor/Screens/BookingScreen.dart';
 import 'package:eazeetailor/Screens/ProfileScreen.dart';
+import 'package:eazeetailor/Screens/SizingScreen.dart';
 import 'package:eazeetailor/models/OutfitData.dart';
+import 'package:eazeetailor/models/SizingData.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'OrderFormScreen.dart';
@@ -15,12 +17,13 @@ class _HomeScreenState extends State<HomeScreen> {
   void _doNothing() {}
   // String userName;
   int _currentIndex = 0;
+  //Members mockSize;
 
   final tabs = [
     HomeAction(),
     Container(color: Colors.green, child: Center(child: Text('ORDER'))),
     AppointmentAction(),
-    Container(color: Colors.green, child: Center(child: Text('SIZE'))),
+    SizingScreen(mockSize),
     ProfileAction(),
   ];
 
