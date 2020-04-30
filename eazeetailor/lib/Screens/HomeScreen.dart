@@ -2,11 +2,14 @@ import 'package:eazeetailor/Constant/Constant.dart';
 import 'package:eazeetailor/OrderForm/KurungKedah.dart';
 import 'package:eazeetailor/Screens/BookingScreen.dart';
 import 'package:eazeetailor/Screens/ProfileScreen.dart';
+import 'package:eazeetailor/models/OutfitData.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'package:eazeetailor/OrderForm/Kebarung.dart';
 import 'package:eazeetailor/OrderForm/Jubah.dart';
+
+import 'OrderFormScreen.dart';
 //import 'package:flushbar/flushbar.dart';
 
 
@@ -173,6 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 class HomeAction extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -253,317 +257,46 @@ class HomeAction extends StatelessWidget {
                   crossAxisSpacing: 10,
                   mainAxisSpacing: 10,
                   children: <Widget>[
-                    InkWell(
-                      child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/kurungkedah.jpg'),
-                                  fit: BoxFit.cover)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Container(
-                                  height: 20,
-                                  //margin: EdgeInsets.symmetric(horizontal: 2),
-                                  decoration: BoxDecoration(
-                                      //borderRadius: BorderRadius.circular(10),
-                                      color: Colors.yellow[100]),
-                                  child: Center(
-                                      child: Text(
-                                    "Kurung Kedah",
-                                    style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                              ])),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => KurungKedah(),
-                          ),
-                        );
-                      },
-                    ),
-                    InkWell(
-                      child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  image: AssetImage('assets/images/jubah.jpeg'),
-                                  fit: BoxFit.cover)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Container(
-                                  height: 20,
-                                  //margin: EdgeInsets.symmetric(horizontal: 2),
-                                  decoration: BoxDecoration(
-                                      //borderRadius: BorderRadius.circular(10),
-                                      color: Colors.pink[100]),
-                                  child: Center(
-                                      child: Text(
-                                    "Jubah",
-                                    style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                              ])),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Jubah(),
-                          ),
-                        );
-                      },
-                    ),
-                    InkWell(
-                      child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/kurungsongket.jpg'),
-                                  fit: BoxFit.cover)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Container(
-                                  height: 20,
-                                  //margin: EdgeInsets.symmetric(horizontal: 2),
-                                  decoration: BoxDecoration(
-                                      //borderRadius: BorderRadius.circular(10),
-                                      color: Colors.grey[200]),
-                                  child: Center(
-                                      child: Text(
-                                    "Kurung Songket",
-                                    style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                              ])),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => KurungKedah(),
-                          ),
-                        );
-                      },
-                    ),
-                    InkWell(
-                      child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/kurungpahang.jpg'),
-                                  fit: BoxFit.cover)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Container(
-                                  height: 20,
-                                  //margin: EdgeInsets.symmetric(horizontal: 2),
-                                  decoration: BoxDecoration(
-                                      //borderRadius: BorderRadius.circular(10),
-                                      color: Colors.amber[50]),
-                                  child: Center(
-                                      child: Text(
-                                    "Kurung Pahang",
-                                    style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                              ])),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => KurungKedah(),
-                          ),
-                        );
-                      },
-                    ),
-                    InkWell(
-                      child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  image:
-                                      AssetImage('assets/images/kebarung.jpg'),
-                                  fit: BoxFit.cover)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Container(
-                                  height: 20,
-                                  //margin: EdgeInsets.symmetric(horizontal: 2),
-                                  decoration: BoxDecoration(
-                                      //borderRadius: BorderRadius.circular(10),
-                                      color: Colors.orange[100]),
-                                  child: Center(
-                                      child: Text(
-                                    "Kebarung",
-                                    style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                              ])),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Kebarung(),
-                          ),
-                        );
-                      },
-                    ),
-                    InkWell(
-                      child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/kurungcotton.jpg'),
-                                  fit: BoxFit.cover)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Container(
-                                  height: 20,
-                                  //margin: EdgeInsets.symmetric(horizontal: 2),
-                                  decoration: BoxDecoration(
-                                      //borderRadius: BorderRadius.circular(10),
-                                      color: Colors.lightBlue[200]),
-                                  child: Center(
-                                      child: Text(
-                                    "Kurung Cotton",
-                                    style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                              ])),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => KurungKedah(),
-                          ),
-                        );
-                      },
-                    ),
-                    InkWell(
-                      child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/jubahmoden.jpg'),
-                                  fit: BoxFit.cover)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Container(
-                                  height: 20,
-                                  //margin: EdgeInsets.symmetric(horizontal: 2),
-                                  decoration: BoxDecoration(
-                                      //borderRadius: BorderRadius.circular(10),
-                                      color: Colors.pink[100]),
-                                  child: Center(
-                                      child: Text(
-                                    "Jubah Moden",
-                                    style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                              ])),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => KurungKedah(),
-                          ),
-                        );
-                      },
-                    ),
-                    InkWell(
-                      child: Container(
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: DecorationImage(
-                                  image: AssetImage(
-                                      'assets/images/kurungmoden.jpg'),
-                                  fit: BoxFit.cover)),
-                          child: Column(
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              children: <Widget>[
-                                Container(
-                                  height: 20,
-                                  //margin: EdgeInsets.symmetric(horizontal: 2),
-                                  decoration: BoxDecoration(
-                                      //borderRadius: BorderRadius.circular(10),
-                                      color: Colors.brown[100]),
-                                  child: Center(
-                                      child: Text(
-                                    "Kurung Moden",
-                                    style: TextStyle(
-                                        color: Colors.grey[900],
-                                        fontStyle: FontStyle.italic,
-                                        fontWeight: FontWeight.bold),
-                                  )),
-                                ),
-                                SizedBox(
-                                  height: 20,
-                                ),
-                              ])),
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => KurungKedah(),
-                          ),
-                        );
-                      },
-                    ),
+                    FashionInkwell(
+                      title: "Kurung Kedah", 
+                      image:'assets/images/kurungkedah.jpg',
+                      colors: Colors.yellow[100],
+                      route: OrderForm(outfit[1])),
+                    FashionInkwell(
+                      title: "Jubah", 
+                      image:'assets/images/jubah.jpeg',
+                      colors: Colors.pink[100],
+                      route: OrderForm(outfit[2])),
+                    FashionInkwell(
+                      title: "Kurung Songket",
+                      image: 'assets/images/kurungsongket.jpg',
+                      colors: Colors.grey[200],
+                      route: OrderForm(outfit[1])),
+                    FashionInkwell(
+                      title: "Kurung Pahang",
+                      image: 'assets/images/kurungpahang.jpg',
+                      colors: Colors.amber[50],
+                      route: OrderForm(outfit[1])),
+                    FashionInkwell(
+                      title: "Kebarung",
+                      image: 'assets/images/kebarung.jpg',
+                      colors: Colors.orange[100],
+                      route: OrderForm(outfit[0])),
+                    FashionInkwell(
+                      title: "Kurung Cotton",
+                      image: 'assets/images/kurungcotton.jpg',
+                      colors: Colors.lightBlue[200],
+                      route: OrderForm(outfit[1])),
+                    FashionInkwell(
+                      title: "Jubah Moden",
+                      image: 'assets/images/jubahmoden.jpg',
+                      colors: Colors.pink[100],
+                      route: OrderForm(outfit[1])),
+                    FashionInkwell(
+                      title: "Kurung Moden",
+                      image: 'assets/images/kurungmoden.jpg',
+                      colors: Colors.brown[100],
+                      route: OrderForm(outfit[1])),
                   ]),
             ],
           ),
@@ -573,7 +306,54 @@ class HomeAction extends StatelessWidget {
   }
 }
 
+class FashionInkwell extends StatelessWidget {
+  
+  final title;
+  final image;
+  final colors;
+  final route;
 
+  FashionInkwell({this.title, this.image, this.colors, this.route});
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              image: DecorationImage(
+                  image: AssetImage(image),
+                  fit: BoxFit.cover)),
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Container(
+                  height: 20,
+                  decoration: BoxDecoration(
+                      color: colors),
+                  child: Center(
+                      child: Text(title,
+                    style: TextStyle(
+                        color: Colors.grey[900],
+                        fontStyle: FontStyle.italic,
+                        fontWeight: FontWeight.bold),
+                  )),
+                ),
+                SizedBox(
+                  height: 20,
+                ),
+              ])),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => route,
+          ),
+        );
+      },
+    );
+  }
+}
 
 
 
