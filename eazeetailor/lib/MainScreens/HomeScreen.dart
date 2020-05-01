@@ -4,13 +4,14 @@ import 'package:eazeetailor/MainScreens/BookingScreen.dart';
 import 'package:eazeetailor/MainScreens/ProfileScreen.dart';
 import 'package:eazeetailor/MainScreens/SizingScreen.dart';
 import 'package:eazeetailor/SubScreens/OrderFormScreen.dart';
+import 'package:eazeetailor/models/OrderData.dart';
 import 'package:eazeetailor/models/OutfitData.dart';
 import 'package:eazeetailor/models/SizingData.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'OrderScreen.dart';
-import 'OrderScreen.dart';
+
 class HomeScreen extends StatefulWidget {
   
   @override
@@ -25,7 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   final tabs = [
     HomeAction(),
-    // OrderScreen(),
+    OrderScreen(mockOrder),
     // Container(color: Colors.green, child: Center(child: Text('ORDER'))),
     AppointmentAction(),
     SizingScreen(mockSize),
