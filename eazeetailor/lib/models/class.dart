@@ -21,3 +21,11 @@ class Members {
   Members(this.name, this.sizes);
   Members.copy(Members from) : this(from.name, from.sizes);
 }
+
+class Order{
+  String design;
+  String size;
+  String fabric;
+
+  Order(this.design, this.size, this.fabric);
+}
