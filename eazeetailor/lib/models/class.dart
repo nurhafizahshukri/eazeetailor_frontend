@@ -28,4 +28,5 @@ class Order{
   String fabric;
 
   Order(this.design, this.size, this.fabric);
+  Order.copy(Order from) : this(from.design, from.size, from.fabric);
 }

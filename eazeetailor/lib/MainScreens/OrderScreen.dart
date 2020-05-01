@@ -1,11 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../models/class.dart';
-
 
 class OrderScreen extends StatefulWidget {
-  final List<Order> orderDetails;
+   List orderDetails;
 
   OrderScreen(this.orderDetails);
 
@@ -20,18 +18,31 @@ class _OrderScreenState extends State<OrderScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        padding: EdgeInsets.only(top: 15),
         child: ListView.separated(
           itemBuilder: (context, index) 
           => ListTile(
               leading: Icon(Icons.note),
-              title: Text('Order ${[index]}'),
-              subtitle: Text('Design: \nSize: \nFabric: ')
+              title: Text('Order ${index + 1}'),
+              subtitle: Wrap(
+                children: <Widget>[
+                  Text('Design:' + widget.orderDetails[index].design.toString(),),
+                  Text('Size:'  + widget.orderDetails[index].size.toString(),),
+                  Text('Fabric: ' + widget.orderDetails[index].fabric.toString(),)
+                ],
+              ),
+              
+              trailing: Text('Delete',
+                style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
+                ),
               ),
           separatorBuilder: (context, index) => Divider(color: Colors.black),
           itemCount: widget.orderDetails.length),
       ),
 
       floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
         children: <Widget>[
           FloatingActionButton.extended(
               icon: Icon(Icons.add),
