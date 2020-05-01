@@ -26,9 +26,10 @@ class _OrderScreenState extends State<OrderScreen> {
               title: Text('Order ${index + 1}'),
               subtitle: Wrap(
                 children: <Widget>[
-                  Text('Design:' + widget.orderDetails[index].design.toString(),),
-                  Text('Size:'  + widget.orderDetails[index].size.toString(),),
-                  Text('Fabric: ' + widget.orderDetails[index].fabric.toString(),)
+                  Container(),
+                  Text( widget.orderDetails[index].design.toString(),),
+                  Text(' , '  + widget.orderDetails[index].size.toString(),),
+                  Text(' , ' + widget.orderDetails[index].fabric.toString(),)
                 ],
               ),
               
