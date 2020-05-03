@@ -7,6 +7,7 @@ import 'package:eazeetailor/SubScreens/OrderFormScreen.dart';
 import 'package:eazeetailor/models/OrderData.dart';
 import 'package:eazeetailor/models/OutfitData.dart';
 import 'package:eazeetailor/models/SizingData.dart';
+import 'package:eazeetailor/models/ApptData.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeAction(),
     OrderScreen(mockOrder),
     // Container(color: Colors.green, child: Center(child: Text('ORDER'))),
-    AppointmentAction(),
+    BookingScreen(mockBooking),
     SizingScreen(mockSize),
     ProfileAction(),
   ];
@@ -85,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontWeight: FontWeight.bold,
                     ),),
             onTap: () {
-              AppointmentAction();
+              BookingScreen(mockBooking);
             },
           ),
           ListTile(

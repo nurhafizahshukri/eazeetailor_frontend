@@ -1,37 +1,55 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class AppointmentAction extends StatelessWidget {
-  final List<String> items = new List<String>.generate(1, (i) => "${i + 1}");
+class BookingScreen extends StatefulWidget {
+   List apptDetails;
+
+  BookingScreen(this.apptDetails);
+
+  @override
+  _BookingScreenState createState() => _BookingScreenState();
+}
+
+class _BookingScreenState extends State<BookingScreen> {
+  
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-      body: new ListView.builder(
-        padding: EdgeInsets.only(top: 20),
-          itemCount: items.length,
-          itemBuilder: (context, int index) {
-            return new Dismissible(
-                key: new Key(items[index]),
-                onDismissed: (direction) {
-                  items.removeAt(index);
-                  Scaffold.of(context).showSnackBar(new SnackBar(
-                    behavior: SnackBarBehavior.floating,
-                    content: new Text("Appointment have been deleted"),
-                  ));
-                },
-                background: new Container(color: Colors.red),
-                child: new ListTile(
-                  leading: Icon(Icons.event_note),
-                  title: Text('Appointment ${items[index]}'),
-                  subtitle: Text('Date: \nTime:'),
-                  trailing: Text(
-                    'Rejected',
-                    style: TextStyle(
-                        color: Colors.red[700], fontWeight: FontWeight.bold),
-                  ),
-                ));
-          }),
+    return Scaffold(
+      body: Container(
+        padding: EdgeInsets.only(top: 15),
+        child: ListView.separated(
+          itemBuilder: (context, index) 
+          => ListTile(
+              leading: Icon(Icons.note),
+              title: Text('Appointment ${index + 1}'),
+              subtitle: Wrap(
+                children: <Widget>[
+                  Container(),
+                  Text( 'Date:'+' '+ widget.apptDetails[index].date.toString() + 
+                        '\nTime:' + ' '+ widget.apptDetails[index].time.toString(),),
+                ],
+              ),
+              
+              trailing: Text('Delete',
+                style: TextStyle(
+                  fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
+                ),
+              ),
+          separatorBuilder: (context, index) => Divider(color: Colors.black),
+          itemCount: widget.apptDetails.length),
+      ),
+
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: <Widget>[
+          FloatingActionButton.extended(
+              icon: Icon(Icons.add),
+              backgroundColor: Colors.cyan,
+              label: Text('Add'),
+              onPressed: null)
+        ],
+      ),
     );
   }
 }
