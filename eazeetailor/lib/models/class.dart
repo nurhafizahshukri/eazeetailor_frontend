@@ -30,3 +30,11 @@ class Order{
   Order(this.design, this.size, this.fabric);
   Order.copy(Order from) : this(from.design, from.size, from.fabric);
 }
+
+class Appointment{
+  String date;
+  String time;
+
+  Appointment(this.date, this.time);
+  Appointment.copy(Appointment from) : this(from.date, from.time);
+}
