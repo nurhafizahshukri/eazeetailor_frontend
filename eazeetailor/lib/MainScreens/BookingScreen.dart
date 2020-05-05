@@ -17,10 +17,22 @@ class _BookingScreenState extends State<BookingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        
         padding: EdgeInsets.only(top: 15),
         child: ListView.separated(
-          itemBuilder: (context, index) 
-          => ListTile(
+           itemCount: widget.apptDetails.length,
+           separatorBuilder: (context, index) => Divider(color: Colors.black),
+          itemBuilder: (context, index) {
+             return new Dismissible(key: Key(widget.apptDetails[index].toString()),
+            onDismissed: (direction){
+              widget.apptDetails.removeAt(index);
+              Scaffold.of(context).showSnackBar(
+                new SnackBar(
+                content : new Text("Appointment has deleted"),
+                backgroundColor: Colors.teal,
+              ));
+          },
+          child:  ListTile(
               leading: Icon(Icons.note),
               title: Text('Appointment ${index + 1}'),
               subtitle: Wrap(
@@ -31,13 +43,13 @@ class _BookingScreenState extends State<BookingScreen> {
                 ],
               ),
               
-              trailing: Text('Delete',
+              trailing: Text('Swipe to Delete',
                 style: TextStyle(
-                  fontSize: 18, fontWeight: FontWeight.bold, color: Colors.red),
+                  fontSize: 13, fontWeight: FontWeight.bold, color: Colors.cyan[900]),
                 ),
-              ),
-          separatorBuilder: (context, index) => Divider(color: Colors.black),
-          itemCount: widget.apptDetails.length),
+              ));
+          }
+        ),
       ),
 
       floatingActionButton: Row(
