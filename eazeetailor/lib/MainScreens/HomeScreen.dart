@@ -21,14 +21,11 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   void _doNothing() {}
-  // String userName;
   int _currentIndex = 0;
-  //Members mockSize;
 
   final tabs = [
     HomeAction(),
     OrderScreen(mockOrder),
-    // Container(color: Colors.green, child: Center(child: Text('ORDER'))),
     BookingScreen(mockBooking),
     SizingScreen(mockSize),
     ProfileAction(),

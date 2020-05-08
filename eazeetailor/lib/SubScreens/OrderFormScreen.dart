@@ -18,18 +18,12 @@ class OrderForm extends StatefulWidget {
 
 class _OrderFormState extends State<OrderForm> {
   int selectedRadio;
-
-  @override
-  void initState() {
-    super.initState();
-    selectedRadio = 0;
-  }
-
-  setSelectedRadio(int val) {
-    setState(() {
-      selectedRadio = val;
-    });
-  }
+  String _valFriends;
+  List _myFriends = [
+    "Mom",
+    "Sister",
+    "Me"
+  ];
 
   void _doNothing() {}
 
@@ -96,52 +90,23 @@ class _OrderFormState extends State<OrderForm> {
                   ),
                 ),
               Text('Size :', textAlign: TextAlign.center,),
-              ButtonBar(
-                alignment: MainAxisAlignment.center,
-                buttonPadding: EdgeInsets.zero,
-                children: <Widget>[
-                  //Padding(padding: EdgeInsets.all(0)),
-                  Text('XS'),
-                  Radio(
-                    value: 1, 
-                    groupValue: selectedRadio, 
-                    activeColor: Colors.green ,
-                    onChanged: (val) {
-                      setSelectedRadio(val);
-                    }),
-                    Text('S'),
-                  Radio(
-                    value: 2, 
-                    groupValue: selectedRadio, 
-                    activeColor: Colors.green ,
-                    onChanged: (val) {
-                      setSelectedRadio(val);
-                    }),
-                    Text('M'),
-                  Radio(
-                    value: 3, 
-                    groupValue: selectedRadio, 
-                    activeColor: Colors.green ,
-                    onChanged: (val) {
-                      setSelectedRadio(val);
-                    }),
-                    Text('L'),
-                  Radio(
-                    value: 4, 
-                    groupValue: selectedRadio, 
-                    activeColor: Colors.green ,
-                    onChanged: (val) {
-                      setSelectedRadio(val);
-                    }),
-                    Text('XL'),
-                  Radio(
-                    value: 5, 
-                    groupValue: selectedRadio, 
-                    activeColor: Colors.green ,
-                    onChanged: (val) {
-                      setSelectedRadio(val);
-                    }),
-                ],
+              Center(
+                child: DropdownButton(
+                hint: Text("Select Your Size"),
+                value: _valFriends,
+                items: _myFriends.map((value) {
+                  return DropdownMenuItem(
+                    child: Text(value,
+                    textAlign: TextAlign.center,),
+                    value: value,
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  setState(() {
+                    _valFriends = value;
+                  });
+                },
+            ),
               ),
               Padding(padding: EdgeInsets.only(left: 30, right: 30, bottom: 20),
                   child: TextFormField(
@@ -182,14 +147,10 @@ class _OrderFormState extends State<OrderForm> {
                 RaisedButton(
                   color: Colors.cyan,
                   onPressed: () {
-                    Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => AppointmentScreen(),
-                        ),
-                      );
+                      Navigator.popUntil(context, (route) => route.isFirst);
                   },
                   child: const Text(
-                    'Next',
+                    'Submit',
                     style: TextStyle(fontSize: 20)
                     ),
                 ),

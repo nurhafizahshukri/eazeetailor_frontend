@@ -119,11 +119,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                 RaisedButton(
                   color: Colors.cyan,
                   onPressed: () {
-                    Navigator.push(
-                            context,
-                            MaterialPageRoute(builder: (context) => HomeScreen(),
-                        ),
-                      );
+                      Navigator.popUntil(context, (route) => route.isFirst);
                   },
                   child: const Text(
                     'Submit',

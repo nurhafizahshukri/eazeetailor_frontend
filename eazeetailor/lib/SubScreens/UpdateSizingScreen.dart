@@ -15,8 +15,7 @@ class UpdateSizeScreen extends StatefulWidget {
 }
 
 class _UpdateSizeScreenState extends State<UpdateSizeScreen> {
-  void _doNothing() {}
-  
+ 
   bool keyboardOpen = false;
 
   @override
@@ -32,35 +31,37 @@ class _UpdateSizeScreenState extends State<UpdateSizeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-          automaticallyImplyLeading: true,
-          backgroundColor: Color(0xFF0097A7),
-          centerTitle: true,
-          title: new Text("Eazee Tailor"),
-          actions: <Widget>[
-            IconButton(
-              icon: new Icon(Icons.search),
-              onPressed: _doNothing,
-                          ),
-                          IconButton(
-                              icon: new Icon(Icons.power_settings_new),
-                              onPressed: () {
-                                Navigator.of(context).pushReplacementNamed(LOGIN_SCREEN);
-                              }),
-                        ],
-                      ),
+       appBar: AppBar(
+        elevation: 0,
+        brightness: Brightness.light,
+        iconTheme: IconThemeData(color: Colors.white),
+        backgroundColor: Color(0xFF0097A7),
+        title: Text(
+          'Update ' +widget.memberSize.name +' Size',
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
       body: Center(
         child: ListView(
           children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text('Update ' +widget.memberSize.name +' Size',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 25.0,
-                    fontWeight: FontWeight.bold,
-                    ),),
-          ),
+            Padding(padding: EdgeInsets.fromLTRB(30, 30, 30, 20),
+                  child: Form(
+                    child: TextFormField(
+                      initialValue: widget.memberSize.name,
+                      textAlign: TextAlign.center,
+                      autofocus: false,
+                      onChanged: (String value) {
+                      widget.memberSize.name = value;
+                    },
+                    decoration: InputDecoration(
+                      helperText: 'Add a name for this size measurement.',
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(15)
+                        )
+                    ),
+                ),
+                  ),
+              ),
           Container(
             margin: EdgeInsets.fromLTRB(20, 10, 20, 10),
             height: 260,

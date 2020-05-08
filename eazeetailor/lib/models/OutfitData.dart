@@ -19,6 +19,6 @@ List <OutfitDetails> outfit = [
     'KEBARUNG', 
     'Kebaya labuh di bawah lutut dan mempunyai potongan kembang dari paras pinggul dengan padanan kain lipat batik.',
     ['assets/images/kb1.jpg',
-    'assets/images/kb2.jpeg',
-    'assets/images/kb3.jpeg',]),
+    'assets/images/kb2.jpg',
+    'assets/images/kb3.jpg',]),
 ];
