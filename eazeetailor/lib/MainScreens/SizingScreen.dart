@@ -13,6 +13,7 @@ class SizingScreen extends StatefulWidget {
 }
 
 class _SizingScreenState extends State<SizingScreen> {
+  
   void _navigate(int index) async {
     Members returnData = await Navigator.push(
       context,
@@ -27,9 +28,60 @@ class _SizingScreenState extends State<SizingScreen> {
     }
   }
 
+  void _removeSizeItem(int index) {
+  setState(() => widget.memberSize.removeAt(index));
+
+  Scaffold.of(context).showSnackBar(
+                new SnackBar(
+                content : new Text("Size has been deleted"),
+                backgroundColor: Colors.teal,
+                ));
+  }
+
+  void _promptRemoveSizeItem(int index) {
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return new AlertDialog(
+        title: new Text('Delete this size measurement?'),
+        actions: <Widget>[
+          new FlatButton(
+            child: new Text('CANCEL'),
+            onPressed: () => Navigator.of(context).pop()
+          ),
+          new FlatButton(
+            child: new Text('DELETE'),
+            onPressed: () {
+              _removeSizeItem(index);
+              Navigator.of(context).pop();
+            }
+          )
+        ]
+      );
+    }
+  );
+}
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        elevation: 5,
+        brightness: Brightness.light,
+        // backgroundColor: Color(0xFF0097A7),
+        backgroundColor: Colors.cyan[800],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.elliptical(
+              MediaQuery.of(context).size.width, 100.0)
+          )
+        ),
+        title: Text(
+          'SIZE LIST',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+      ),
       body: Container(
           child: ListView.builder(
               itemCount: widget.memberSize.length,
@@ -63,7 +115,7 @@ class _SizingScreenState extends State<SizingScreen> {
                                         ),
                                         Padding(
                                           padding: const EdgeInsets.fromLTRB(
-                                              0, 15, 0, 0),
+                                              0, 15, 180, 0),
                                           child:
                                               //for (var i in text),
                                               Text(
@@ -87,35 +139,13 @@ class _SizingScreenState extends State<SizingScreen> {
                                 ),
                               ),
                               Expanded(
-                                  child: ButtonBar(children: <Widget>[
-                                FlatButton(
-                                    child: Text(
-                                      'Update',
-                                      style: TextStyle(fontSize: 18),
-                                    ),
-                                    onPressed: () => _navigate(index))
-                              ]))
+                                  child: Icon(Icons.arrow_forward_ios))
                             ])),
                     onTap: () => _navigate(index),
-                    onLongPress: () {
-                      setState(() {
-                        widget.memberSize.removeAt(index);
-                      });
-                    },
+                    onLongPress: () => _promptRemoveSizeItem(index)
                   ),
                 );
               })),
-      floatingActionButton: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: <Widget>[
-          FloatingActionButton.extended(
-              heroTag: null,
-              label: Text('Add'),
-              backgroundColor: Colors.cyan,
-              icon: Icon(Icons.add),
-              onPressed: null)
-        ],
-      ),
     );
   }
 }
