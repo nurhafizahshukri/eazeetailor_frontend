@@ -10,4 +10,5 @@ Eazee Tailor - Tailor Mobile Application
 
 ### Youtube's link
 
-youtube - https://youtu.be/lS3oKBaVqfI
+Deliverable #2 - https://youtu.be/lS3oKBaVqfI
+Deliverable #3 - https://youtu.be/11zMMy-8kug
