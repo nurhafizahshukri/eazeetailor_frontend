@@ -165,9 +165,9 @@ class _SizingScreenState extends State<SizingScreen> {
         onPressed: () async {
           final newSize = await dataService.createSize(
             members: Members(name: '<Enter Name>', sleeve: 0.0, chest: 0.0, body: 0.0 ),
-          ); // Update server. Id for the new Todo will be given by the server
+          ); 
 
-          setState(() => _members.add(newSize)); // Update UI
+          setState(() => _members.add(newSize)); 
         },
       ),
     );

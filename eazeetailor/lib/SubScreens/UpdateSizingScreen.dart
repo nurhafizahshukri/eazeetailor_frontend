@@ -1,5 +1,5 @@
-import 'package:eazeetailor/Constant/Constant.dart';
 import 'package:eazeetailor/models/class.dart';
+import 'package:eazeetailor/services/data_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
@@ -15,7 +15,7 @@ class UpdateSizeScreen extends StatefulWidget {
 }
 
 class _UpdateSizeScreenState extends State<UpdateSizeScreen> {
- 
+  // List<Members> _members;
   bool keyboardOpen = false;
 
   @override
@@ -30,6 +30,7 @@ class _UpdateSizeScreenState extends State<UpdateSizeScreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     return Scaffold(
        appBar: AppBar(
         elevation: 0,
@@ -87,12 +88,12 @@ class _UpdateSizeScreenState extends State<UpdateSizeScreen> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 10.0, right: 10.0),
                     child: new TextFormField(
-                    initialValue: widget.memberSize.sizes.sleeve.toString(),
+                    initialValue: widget.memberSize.sleeve.toString(),
                     textAlign: TextAlign.center,
                     autofocus: false,
                     keyboardType: TextInputType.numberWithOptions(decimal: true),
                     onChanged: (String value) {
-                      widget.memberSize.sizes.sleeve = double.parse(value);
+                      widget.memberSize.sleeve = double.parse(value);
                     },
                   ),
           ),
@@ -110,12 +111,12 @@ class _UpdateSizeScreenState extends State<UpdateSizeScreen> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 10.0, right: 10.0),
                     child: new TextFormField(
-                    initialValue: widget.memberSize.sizes.chest.toString(),
+                    initialValue: widget.memberSize.chest.toString(),
                     textAlign: TextAlign.center,
                     autofocus: false,
                     keyboardType: TextInputType.numberWithOptions(decimal: true),
                     onChanged: (String value) {
-                      widget.memberSize.sizes.chest = double.parse(value);
+                      widget.memberSize.chest = double.parse(value);
                     },
                   ),
           ),
@@ -133,12 +134,12 @@ class _UpdateSizeScreenState extends State<UpdateSizeScreen> {
                   child: Padding(
                     padding: EdgeInsets.only(left: 10.0, right: 10.0),
                     child: new TextFormField(
-                      initialValue: widget.memberSize.sizes.body.toString(),
+                      initialValue: widget.memberSize.body.toString(),
                       textAlign: TextAlign.center,
                       autofocus: false,
                       keyboardType: TextInputType.numberWithOptions(decimal: true),
                       onChanged: (String value) {
-                        widget.memberSize.sizes.body = double.parse(value);
+                        widget.memberSize.body = double.parse(value);
                     },
                   ),
           ),
@@ -159,7 +160,13 @@ class _UpdateSizeScreenState extends State<UpdateSizeScreen> {
             label: Text('Update'),
             backgroundColor: Colors.cyan[800],
             icon: Icon(Icons.check_circle),
-            onPressed: () => Navigator.pop(context, widget.memberSize)),
+            onPressed: () async {
+          final updateSize = await dataService.updatesize(
+            id: widget.memberSize.id,
+            members: Members(name: widget.memberSize.name, sleeve: widget.memberSize.sleeve, chest: widget.memberSize.chest ,body: widget.memberSize.body ),
+          ); 
+          Navigator.pop(context, updateSize);
+        },),
           FloatingActionButton.extended(
             heroTag: null,
             label: Text('Cancel'),
@@ -169,7 +176,7 @@ class _UpdateSizeScreenState extends State<UpdateSizeScreen> {
         ],
       ),
                   );
-                }
+  }
 }
 
  
