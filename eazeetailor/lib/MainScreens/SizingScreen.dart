@@ -1,35 +1,38 @@
 import 'package:eazeetailor/SubScreens/updateSizingScreen.dart';
 import 'package:eazeetailor/models/class.dart';
+import 'package:eazeetailor/services/data_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class SizingScreen extends StatefulWidget {
-  final List<Members> memberSize;
-
-  SizingScreen(this.memberSize);
+ 
 
   @override
   _SizingScreenState createState() => _SizingScreenState();
 }
 
 class _SizingScreenState extends State<SizingScreen> {
-  
+  List<Members> _members;
   void _navigate(int index) async {
     Members returnData = await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) =>
-            UpdateSizeScreen(Members.copy(widget.memberSize[index])),
+            UpdateSizeScreen(Members.copy(_members[index])),
       ),
     );
 
     if (returnData != null) {
-      setState(() => widget.memberSize[index] = returnData);
+      setState(() => _members[index] = returnData);
     }
   }
 
-  void _removeSizeItem(int index) {
-  setState(() => widget.memberSize.removeAt(index));
+  void _removeSizeItem(int index) async {
+    await dataService.deleteMembers(
+      id: _members[index].id.toString());
+      setState(() => _members.removeAt(index));
+    
+  
 
   Scaffold.of(context).showSnackBar(
                 new SnackBar(
@@ -64,6 +67,18 @@ class _SizingScreenState extends State<SizingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<Members>>(
+      future: dataService.getMembersList(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          _members = snapshot.data;
+          return _buildScreen();
+        }
+        return _buildFetchingDataScreen();
+      });
+  }
+
+  Scaffold _buildScreen() {
     return Scaffold(
       appBar: AppBar(
         elevation: 5,
@@ -84,7 +99,7 @@ class _SizingScreenState extends State<SizingScreen> {
       ),
       body: Container(
           child: ListView.builder(
-              itemCount: widget.memberSize.length,
+              itemCount: _members.length,
               itemBuilder: (context, index) {
                 return Card(
                   elevation: 5,
@@ -106,7 +121,7 @@ class _SizingScreenState extends State<SizingScreen> {
                                       children: <Widget>[
                                         Container(
                                           child: Text(
-                                            widget.memberSize[index].name
+                                            _members[index].name
                                                 .toString(),
                                             style: TextStyle(
                                                 fontSize: 20,
@@ -119,17 +134,14 @@ class _SizingScreenState extends State<SizingScreen> {
                                           child:
                                               //for (var i in text),
                                               Text(
-                                            'Body Length : ' +
-                                                widget.memberSize[index].sizes
-                                                    .body
+                                            'Sleeve Length : ' +
+                                                _members[index].sleeve
                                                     .toString() +
-                                                '\nSleeve Length : ' +
-                                                widget.memberSize[index].sizes
-                                                    .sleeve
+                                                '\nChest Length : ' +
+                                                _members[index].chest
                                                     .toString() +
-                                                '\nChest : ' +
-                                                widget.memberSize[index].sizes
-                                                    .chest
+                                                '\nBody Length : ' +
+                                                _members[index].body
                                                     .toString(),
                                             textAlign: TextAlign.left,
                                             style: TextStyle(fontSize: 18),
@@ -142,10 +154,38 @@ class _SizingScreenState extends State<SizingScreen> {
                                   child: Icon(Icons.arrow_forward_ios))
                             ])),
                     onTap: () => _navigate(index),
-                    onLongPress: () => _promptRemoveSizeItem(index)
+                    onLongPress: 
+                    () => _promptRemoveSizeItem(index)
                   ),
                 );
               })),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        backgroundColor: Colors.cyan[800],
+        onPressed: () async {
+          final newSize = await dataService.createSize(
+            members: Members(name: '<Enter Name>', sleeve: 0.0, chest: 0.0, body: 0.0 ),
+          ); // Update server. Id for the new Todo will be given by the server
+
+          setState(() => _members.add(newSize)); // Update UI
+        },
+      ),
+    );
+  }
+
+Scaffold _buildFetchingDataScreen() {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CircularProgressIndicator(),
+            SizedBox(height: 50),
+            Text('Fetching todo... Please wait'),
+          ],
+        ),
+      ),
     );
   }
 }
+

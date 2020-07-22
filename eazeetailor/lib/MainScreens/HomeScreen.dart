@@ -27,7 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
     HomeAction(),
     OrderScreen(mockOrder),
     BookingScreen(mockBooking),
-    SizingScreen(mockSize),
+    SizingScreen(),
     ProfileAction(),
   ];
 
