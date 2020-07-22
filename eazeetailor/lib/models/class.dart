@@ -5,21 +5,25 @@ class OutfitDetails {
   OutfitDetails(this.title, this.desc, this.imgurl);
 }
 
-class Size {
+class Members {
+  String id;
+  String name;
   double sleeve;
   double chest;
   double body;
 
-  Size(this.body,this.chest,this.sleeve);
-  Size.copy(Size from) : this(from.body,from.chest,from.sleeve);
-}
-
-class Members {
-  String name;
-  Size sizes;
-
-  Members(this.name, this.sizes);
-  Members.copy(Members from) : this(from.name, from.sizes);
+  Members ({this.id, this.name, this.sleeve, this.chest,this.body});
+  Members.copy(Members from) : this(id: from.id, name: from.name, sleeve: from.sleeve, body: from.body, chest: from.chest);
+  Members.fromJson(Map<String, dynamic> json)
+    : this(
+      id: json['id'], 
+      name: json['name'], 
+      sleeve: json['sleeve'].toDouble(), 
+      chest: json['chest'].toDouble(), 
+      body: json['body'].toDouble()
+    );
+  Map<String, dynamic> toJson() =>
+    {'id': id, 'name': name, 'sleeve': sleeve, 'chest': chest, 'body': body};
 }
 
 class Order{

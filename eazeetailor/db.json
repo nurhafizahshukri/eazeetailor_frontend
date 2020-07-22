@@ -1,0 +1,32 @@
+{
+  "size": [
+    {
+      "id": 3,
+      "name": "Taylor",
+      "sleeve": 23.0,
+      "chest": 200.0,
+      "body": 18.0
+    },
+    {
+      "id": 6,
+      "name": "Kakak",
+      "sleeve": 20.0,
+      "chest": 90.0,
+      "body": 30.0
+    },
+    {
+      "id": 7,
+      "name": "<Enter Name>",
+      "sleeve": 0.0,
+      "chest": 0.0,
+      "body": 0.0
+    },
+    {
+      "id": 8,
+      "name": "<Enter Name>",
+      "sleeve": 0.0,
+      "chest": 0.0,
+      "body": 0.0
+    }
+  ]
+}
