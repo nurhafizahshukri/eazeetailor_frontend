@@ -1,20 +1,32 @@
+import 'package:eazeetailor/models/class.dart';
+import 'package:eazeetailor/services/data_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BookingScreen extends StatefulWidget {
-   List apptDetails;
-
-  BookingScreen(this.apptDetails);
+   
 
   @override
   _BookingScreenState createState() => _BookingScreenState();
 }
 
 class _BookingScreenState extends State<BookingScreen> {
-  
+  List<Appointment> _appointment;
 
   @override
   Widget build(BuildContext context) {
+     return FutureBuilder<List<Appointment>>(
+      future: dataService.getAppointmentList(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          _appointment = snapshot.data;
+          return _buildScreen();
+        }
+        return _buildFetchingDataScreen();
+      });
+  }
+
+Scaffold _buildScreen() {
     return Scaffold(
       appBar: AppBar(
         elevation: 5,
@@ -37,18 +49,20 @@ class _BookingScreenState extends State<BookingScreen> {
         
         padding: EdgeInsets.only(top: 15),
         child: ListView.separated(
-           itemCount: widget.apptDetails.length,
+           itemCount: _appointment.length,
            separatorBuilder: (context, index) => Divider(color: Colors.black),
           itemBuilder: (context, index) {
-             return new Dismissible(key: Key(widget.apptDetails[index].toString()),
+             return new Dismissible(key: Key(_appointment[index].toString()),
                 background: Container(
                   color: Colors.red,
                   alignment: AlignmentDirectional.centerEnd,
                   child: Icon(Icons.delete, color: Colors.white)
                 ),
                 direction: DismissDirection.endToStart,
-                onDismissed: (direction){
-                  widget.apptDetails.removeAt(index);
+                onDismissed: (direction) async {
+                  await dataService.deleteAppointment(
+                    id: _appointment[index].id.toString());
+                    setState(() => _appointment.removeAt(index));
                   Scaffold.of(context).showSnackBar(
                     new SnackBar(
                       content : new Text("Appointment has been deleted"),
@@ -61,8 +75,8 @@ class _BookingScreenState extends State<BookingScreen> {
                 subtitle: Wrap(
                 children: <Widget>[
                   Container(),
-                  Text( 'Date:'+' '+ widget.apptDetails[index].date.toString() + 
-                        '\nTime:' + ' '+ widget.apptDetails[index].time.toString(),),
+                  Text( 'Date:'+' '+ _appointment[index].date + 
+                        '\nTime:' + ' '+ _appointment[index].time,),
                 ],
               ),
               
@@ -72,6 +86,21 @@ class _BookingScreenState extends State<BookingScreen> {
                 ),
               ));
           }
+        ),
+      ),
+    );
+  }
+
+  Scaffold _buildFetchingDataScreen() {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CircularProgressIndicator(),
+            SizedBox(height: 50),
+            Text('Fetching todo... Please wait'),
+          ],
         ),
       ),
     );
