@@ -36,9 +36,18 @@ class Order{
 }
 
 class Appointment{
+  int id;
   String date;
   String time;
 
-  Appointment(this.date, this.time);
-  Appointment.copy(Appointment from) : this(from.date, from.time);
+  Appointment({this.id, this.date, this.time});
+  // Appointment.copy(Appointment from) : this(id: from.id,date: from.date,time: from.time);
+  Appointment.fromJson(Map<String, dynamic> json)
+    : this(
+      id: json['id'], 
+      date: json['date'].toString(), 
+      time: json['time'].toString(), 
+    );
+  Map<String, dynamic> toJson() =>
+    {'id': id, 'date': date, 'time': time};
 }
