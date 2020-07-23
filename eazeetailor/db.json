@@ -3,30 +3,52 @@
     {
       "id": 3,
       "name": "Taylor",
-      "sleeve": 23.0,
-      "chest": 200.0,
-      "body": 18.0
+      "sleeve": 23,
+      "chest": 200,
+      "body": 18
     },
     {
       "id": 6,
       "name": "Kakak",
-      "sleeve": 20.0,
-      "chest": 90.0,
-      "body": 30.0
+      "sleeve": 20,
+      "chest": 90,
+      "body": 30
     },
     {
       "id": 7,
       "name": "<Enter Name>",
-      "sleeve": 0.0,
-      "chest": 0.0,
-      "body": 0.0
+      "sleeve": 0,
+      "chest": 0,
+      "body": 0
     },
     {
       "id": 8,
       "name": "<Enter Name>",
-      "sleeve": 0.0,
-      "chest": 0.0,
-      "body": 0.0
+      "sleeve": 0,
+      "chest": 0,
+      "body": 0
+    }
+  ],
+  "appointment": [
+    {
+      "id": 1,
+      "date": "2020-07-25",
+      "time": "15:00"
+    },
+    {
+      "id": 2,
+      "date": "2020-07-28",
+      "time": "16:30"
+    },
+    {
+      "id": 3,
+      "date": "2020-07-31",
+      "time": "18:00"
+    },
+    {
+      "id": 4,
+      "date": "2020-07-24",
+      "time": "09:00"
     }
   ]
 }

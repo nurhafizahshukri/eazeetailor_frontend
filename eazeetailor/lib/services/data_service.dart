@@ -7,12 +7,12 @@ import '../models/class.dart';
 class DataService {
 
   // Live server on Firebase
-  static const String baseUrl =
-      'http://us-central1-eazeetailor.cloudfunctions.net/api';
+  // static const String baseUrl =
+  //     'http://us-central1-eazeetailor.cloudfunctions.net/api';
 
   // server on json
-  // static const String baseUrl =
-  //     'http://192.168.1.7:3000';
+  static const String baseUrl =
+      'http://192.168.1.7:3000';
 
 
   Future get(String endpoint) async {
@@ -74,6 +74,25 @@ class DataService {
   Future deleteMembers({String id}) async {
     await delete('members/$id');
   }
+
+  Future<List<Appointment>> getAppointmentList() async {
+    final listJson = await get('appointment');
+
+    return (listJson as List)
+        .map((itemJson) => Appointment.fromJson(itemJson))
+        .toList();
+  }
+
+  Future<Appointment> createAppointment({Appointment appointments}) async {
+    final json = await post('appointment', data: appointments);
+    return Appointment.fromJson(json);
+  }
+
+   Future deleteAppointment({String id}) async {
+    await delete('appointment/$id');
+  }
+
+  
 }
 
 final dataService = DataService();
