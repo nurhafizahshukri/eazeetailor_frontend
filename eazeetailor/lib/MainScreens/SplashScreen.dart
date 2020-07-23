@@ -21,7 +21,7 @@ class SplashScreenState extends State<SplashScreen>
   }
 
   void navigationPage() {
-    Navigator.of(context).pushReplacementNamed(LOGIN_SCREEN);
+    Navigator.of(context).pushReplacementNamed(AUTH_SCREEN);
   }
 
   @override
@@ -44,10 +44,22 @@ class SplashScreenState extends State<SplashScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.cyan[100],
       body: Stack(  
         fit: StackFit.expand,
         children: <Widget>[
+          new Container(
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                colors: [
+                  Color.fromRGBO(215, 117, 255, 1).withOpacity(0.5),
+                  Color.fromRGBO(255, 188, 117, 1).withOpacity(0.9),
+                ],
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                stops: [0, 1],
+              ),
+            ),
+          ),
           new Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[

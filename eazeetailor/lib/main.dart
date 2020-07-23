@@ -1,26 +1,37 @@
 import 'package:flutter/material.dart';
 import 'package:eazeetailor/Constant/Constant.dart';
 import 'package:eazeetailor/MainScreens/SplashScreen.dart';
-import 'package:eazeetailor/MainScreens/LoginScreen.dart';
-import 'package:eazeetailor/MainScreens/SignUpScreen.dart';
+import 'package:provider/provider.dart';
+import 'MainScreens/auth_screen.dart';
+import 'models/auth.dart';
 
-main() {
+void main() => runApp(MyApp());
 
-  runApp(new MaterialApp(
-    title: 'Eazee Tailor',
-    debugShowCheckedModeBanner: false,
-    theme: new ThemeData(
-      accentColor: Colors.black,
-      primaryColor: Colors.black,
-      primaryColorDark: Colors.black
-
-    ),
-    home: new SplashScreen(),
-      routes: <String, WidgetBuilder>{
-      LOGIN_SCREEN: (BuildContext context) => new LogInScreen(),
-      SIGN_UP_SCREEN: (BuildContext context) => new SignUpScreen(),
-      ANIMATED_SPLASH: (BuildContext context) => new SplashScreen()
-      },
-  ));
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(
+          value: Auth(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'Eazee Tailor',
+        debugShowCheckedModeBanner: false,
+        theme: new ThemeData(
+          accentColor: Colors.black,
+          primaryColor: Colors.black,
+          primaryColorDark: Colors.black
+  
+        ),
+        home: new SplashScreen(),
+        routes: <String, WidgetBuilder>{
+          AUTH_SCREEN: (BuildContext context) => new AuthScreen(),
+          ANIMATED_SPLASH: (BuildContext context) => new SplashScreen()
+        },
+      ),
+    );
+  }
 }
 

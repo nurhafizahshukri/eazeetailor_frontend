@@ -43,7 +43,7 @@ class _OrderFormState extends State<OrderForm> {
             IconButton(
                 icon: new Icon(Icons.power_settings_new),
                 onPressed: () {
-                  Navigator.of(context).pushReplacementNamed(LOGIN_SCREEN);
+                  Navigator.of(context).pushReplacementNamed(AUTH_SCREEN);
                 }),
           ],
         ),
