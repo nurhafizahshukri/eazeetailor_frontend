@@ -54,7 +54,7 @@ class _OrderScreenState extends State<OrderScreen> {
           separatorBuilder: (context, index) => Divider(color: Colors.black),
           itemBuilder: (context, index) {
             return new Dismissible(
-              key: Key(_order[index].toString()),
+              key: Key(UniqueKey().toString()),
               background: Container(
                   color: Colors.red,
                   alignment: AlignmentDirectional.centerEnd,
@@ -102,7 +102,7 @@ class _OrderScreenState extends State<OrderScreen> {
           children: <Widget>[
             CircularProgressIndicator(),
             SizedBox(height: 50),
-            Text('Fetching todo... Please wait'),
+            Text('Fetching Order... Please wait'),
           ],
         ),
       ),

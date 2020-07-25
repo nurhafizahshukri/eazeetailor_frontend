@@ -7,12 +7,12 @@ import '../models/class.dart';
 class DataService {
 
   // Live server on Firebase
-  // static const String baseUrl =
-  //     'http://us-central1-eazeetailor.cloudfunctions.net/api';
+  static const String baseUrl =
+      'http://us-central1-eazeetailor.cloudfunctions.net/api';
 
   // server on json
-  static const String baseUrl =
-      'http://192.168.1.7:3000';
+  // static const String baseUrl =
+  //     'http://192.168.1.7:3000';
 
 
   Future get(String endpoint) async {

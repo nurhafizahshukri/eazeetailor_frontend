@@ -52,7 +52,8 @@ Scaffold _buildScreen() {
            itemCount: _appointment.length,
            separatorBuilder: (context, index) => Divider(color: Colors.black),
           itemBuilder: (context, index) {
-             return new Dismissible(key: Key(_appointment[index].toString()),
+             return new Dismissible(
+               key: Key(_appointment[index].toString()),
                 background: Container(
                   color: Colors.red,
                   alignment: AlignmentDirectional.centerEnd,
@@ -99,7 +100,7 @@ Scaffold _buildScreen() {
           children: <Widget>[
             CircularProgressIndicator(),
             SizedBox(height: 50),
-            Text('Fetching todo... Please wait'),
+            Text('Fetching Appointments... Please wait'),
           ],
         ),
       ),

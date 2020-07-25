@@ -27,13 +27,6 @@ class _OrderFormState extends State<OrderForm> {
     super.initState();
   }
 
-  String _valFriends;
-  List _myFriends = [
-    "Mom",
-    "Sister",
-    "Me"
-  ];
-
   void _doNothing() {}
 
   @override
@@ -164,7 +157,7 @@ class _OrderFormState extends State<OrderForm> {
                         final newOrder = await dataService.createOrder(
                       orders: Order(design: widget.outfits.title , size: _size, fabric: _fabric),);
                       setState(() => _order.add(newOrder));
-                        Navigator.popUntil(context, (route) => route.isFirst);
+                      Navigator.popUntil(context, (route) => route.isFirst);
                     }},
                     child: const Text(
                       'Submit',
@@ -172,14 +165,10 @@ class _OrderFormState extends State<OrderForm> {
                       ),
                   ),
                 ],) 
-                 
-                //)
-                
               ]
             
         ),
           ),
-          //),
         ),
         );
         
@@ -192,7 +181,6 @@ class _OrderFormState extends State<OrderForm> {
           children: <Widget>[
             CircularProgressIndicator(),
             SizedBox(height: 50),
-            Text('Fetching todo... Please wait'),
           ],
         ),
       ),

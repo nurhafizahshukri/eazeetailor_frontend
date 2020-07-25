@@ -6,7 +6,7 @@ class OutfitDetails {
 }
 
 class Members {
-  int id;
+  String id;
   String name;
   double sleeve;
   double chest;
@@ -27,7 +27,7 @@ class Members {
 }
 
 class Order{
-  int id;
+  String id;
   String design;
   String size;
   String fabric;
@@ -45,13 +45,12 @@ class Order{
 }
 
 class Appointment{
-  int id;
+  String id;
   String date;
   String time;
 
   Appointment({this.id, this.date, this.time});
-  // Appointment.copy(Appointment from) : this(id: from.id,date: from.date,time: from.time);
-  Appointment.fromJson(Map<String, dynamic> json)
+ Appointment.fromJson(Map<String, dynamic> json)
     : this(
       id: json['id'], 
       date: json['date'].toString(), 
@@ -62,6 +61,7 @@ class Appointment{
 }
 
 class User{
+  
   String name;
   String address;
   String phone;

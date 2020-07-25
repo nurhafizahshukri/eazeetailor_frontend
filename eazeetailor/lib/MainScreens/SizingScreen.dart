@@ -181,7 +181,7 @@ Scaffold _buildFetchingDataScreen() {
           children: <Widget>[
             CircularProgressIndicator(),
             SizedBox(height: 50),
-            Text('Fetching members... Please wait'),
+            Text('Fetching Members size... Please wait'),
           ],
         ),
       ),
