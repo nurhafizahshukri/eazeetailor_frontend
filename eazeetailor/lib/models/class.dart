@@ -6,7 +6,7 @@ class OutfitDetails {
 }
 
 class Members {
-  String id;
+  int id;
   String name;
   double sleeve;
   double chest;
@@ -27,12 +27,21 @@ class Members {
 }
 
 class Order{
+  int id;
   String design;
   String size;
   String fabric;
 
-  Order(this.design, this.size, this.fabric);
-  Order.copy(Order from) : this(from.design, from.size, from.fabric);
+  Order({this.id, this.design, this.size, this.fabric});
+  Order.fromJson(Map<String, dynamic> json)
+    : this(
+      id: json['id'], 
+      design: json['design'], 
+      size: json['size'], 
+      fabric: json['fabric'], 
+    );
+  Map<String, dynamic> toJson() =>
+    {'id': id, 'design': design, 'size': size, 'fabric': fabric};
 }
 
 class Appointment{

@@ -12,7 +12,7 @@
 # @baseUrl = http://us-central1-eazeetailor.cloudfunctions.net/api
 
 ### Getting the list of todos
-GET {{baseUrl}}/appointment
+GET {{baseUrl}}/members
 
 ###  Getting a todo of given id
 GET {{baseUrl}}/members/e0TIQLOEnYf6AxEglPbd
@@ -30,7 +30,7 @@ Content-Type: application/json
 
 
 ### Update the status of a given todo (whether is completed or not)
-PATCH {{baseUrl}}/members/e0TIQLOEnYf6AxEglPbd
+PATCH {{baseUrl}}/user/0
 
 Content-Type: application/json
 
@@ -42,5 +42,5 @@ Content-Type: application/json
 }
 
 ### Deleting a given todo
-DELETE {{baseUrl}}/appointment/5
+DELETE {{baseUrl}}/appointment/3
 

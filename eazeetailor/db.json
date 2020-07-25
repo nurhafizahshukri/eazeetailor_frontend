@@ -1,5 +1,5 @@
 {
-  "size": [
+  "members": [
     {
       "id": 3,
       "name": "Taylor",
@@ -20,13 +20,6 @@
       "sleeve": 0,
       "chest": 0,
       "body": 0
-    },
-    {
-      "id": 8,
-      "name": "<Enter Name>",
-      "sleeve": 0,
-      "chest": 0,
-      "body": 0
     }
   ],
   "appointment": [
@@ -34,21 +27,20 @@
       "id": 1,
       "date": "2020-07-25",
       "time": "15:00"
+    }
+  ],
+  "order": [
+    {
+      "id": 1,
+      "design": "Jubah",
+      "size": "Mom",
+      "fabric": "Chiffon"
     },
     {
       "id": 2,
-      "date": "2020-07-28",
-      "time": "16:30"
-    },
-    {
-      "id": 3,
-      "date": "2020-07-31",
-      "time": "18:00"
-    },
-    {
-      "id": 4,
-      "date": "2020-07-24",
-      "time": "09:00"
+      "design": "JUBAH",
+      "size": "Sister",
+      "fabric": "cotton"
     }
   ],
   "user": [
