@@ -92,6 +92,30 @@ class DataService {
     await delete('appointment/$id');
   }
 
+  Future<List<Order>> getOrderList() async {
+    final listJson = await get('order');
+
+    return (listJson as List)
+        .map((itemJson) => Order.fromJson(itemJson))
+        .toList();
+  }
+
+  Future<Order> createOrder({Order orders}) async {
+    final json = await post('order', data: orders);
+    return Order.fromJson(json);
+  }
+
+   Future deleteOrder({String id}) async {
+    await delete('order/$id');
+  }
+
+  Future<List<User>> getUserList() async {
+    final listJson = await get('user');
+
+    return (listJson as List)
+        .map((itemJson) => User.fromJson(itemJson))
+        .toList();
+  }
   
 }
 
