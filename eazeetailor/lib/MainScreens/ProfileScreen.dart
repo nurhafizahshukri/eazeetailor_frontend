@@ -1,40 +1,29 @@
 import 'package:eazeetailor/SubScreens/SettingScreen.dart';
-import 'package:url_launcher/url_launcher.dart' as launcher;
-import 'package:eazeetailor/info_card.dart';
+import 'package:eazeetailor/models/class.dart';
+import 'package:eazeetailor/services/data_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-const url = 'http://github.com/nurhafizahshukri/projectMAP.git';
-const email = 'eazeetailor@gmail.com';
-const phone = '+60 14 156 1631';
-const location = 'Johor, Malaysia';
-const username = 'Taylor Swift';
-const PasswordCredential = 'tswift';
 
 class ProfileAction extends StatelessWidget {
- 
-  void _showDialog(BuildContext context, {String title, String msg}) {
-    final dialog = AlertDialog(
-      title: Text(title),
-      content: Text(msg),
-      actions: <Widget>[
-        RaisedButton(
-          color: Colors.white,
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          child: Text(
-            'Close',
-            style: TextStyle(color: Colors.black45),
-          ),
-        ),
-      ],
-    );
-    showDialog(context: context, builder: (x) => dialog);
-  }
+  
+  List<User> _user;
+  
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<User>>(
+      future: dataService.getUserList(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          _user = snapshot.data;
+          return _buildScreen(context);
+        }
+        return _buildFetchingDataScreen();
+      });
+  }
+
+  Scaffold _buildScreen(BuildContext context) {
     return Scaffold(
         body: SafeArea(
           child: Column(
@@ -81,52 +70,28 @@ class ProfileAction extends StatelessWidget {
                 ),
               ),
               InfoCard(
-                text: username,
+                text: _user[0].name,
                 icon: Icons.perm_identity,
                 onPressed: () {
                   print('username');
                 },
               ),
               InfoCard(
-                text: location,
+                text: _user[0].address,
                 icon: Icons.location_city,
                 onPressed: () {
                   print('location');
                 },
               ),
               InfoCard(
-                text: phone,
+                text: _user[0].phone,
                 icon: Icons.phone,
-                onPressed: () async {
-                  String removeSpaceFromPhoneNumber =
-                      phone.replaceAll(new RegExp(r"\s+\b|\b\s"), "");
-                  final phoneCall = 'tel:$removeSpaceFromPhoneNumber';
-
-                  if (await launcher.canLaunch(phoneCall)) {
-                    await launcher.launch(phoneCall);
-                  } else {
-                    _showDialog(
-                      context,
-                      title: 'Sorry',
-                      msg: 'Phone number can not be called. Please try again!',
-                    );
-                  }
-                },
+               
               ),
               InfoCard(
-                text: email,
+                text: _user[0].email,
                 icon: Icons.email,
-                onPressed: () async {
-                  if (await launcher.canLaunch(url)) {
-                    await launcher.launch(url);
-                  } else {
-                    _showDialog(
-                      context,
-                      title: 'Sorry',
-                      msg: 'Email can not be send. Please try again!',
-                    );
-                  }
-                },
+               
               ),
             ],
           ),
@@ -144,5 +109,61 @@ class ProfileAction extends StatelessWidget {
                   );
               })
         ]));
+  }
+
+  Scaffold _buildFetchingDataScreen() {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CircularProgressIndicator(),
+            SizedBox(height: 50),
+            Text('Fetching user... Please wait'),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+
+class InfoCard extends StatelessWidget{
+    final String text;
+    final IconData icon;
+    Function onPressed;
+
+    InfoCard({@required this.text, @required this.icon, this.onPressed});
+
+    @override
+  Widget build(BuildContext context){
+    return GestureDetector(
+              onTap: onPressed,
+              child: Card(
+                //color:Colors.cyan[800],
+                shape: RoundedRectangleBorder(
+                  side: BorderSide(color: Colors.cyan[800], width: 2),
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                margin:EdgeInsets.symmetric(vertical:10.0,horizontal:20.0),
+                child: ListTile(
+                  leading: Icon(
+                    icon,
+                    color: Colors.cyan[800],
+                    
+                  ),
+                  title: Text(
+                    text,
+                    style: TextStyle(
+                      fontFamily: 'Source San Pro',
+                      fontSize: 18.0,
+                      color: Colors.black,
+
+                    ),
+
+                  )
+                ),
+              ),
+            );
   }
 }
