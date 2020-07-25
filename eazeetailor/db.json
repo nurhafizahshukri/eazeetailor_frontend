@@ -50,5 +50,13 @@
       "date": "2020-07-24",
       "time": "09:00"
     }
+  ],
+  "user": [
+    {
+      "name": "Taylor",
+      "address": "Sg. Buloh, Selangor",
+      "phone": "012-2324123",
+      "email": "taylor@gmail.com"
+    }
   ]
 }

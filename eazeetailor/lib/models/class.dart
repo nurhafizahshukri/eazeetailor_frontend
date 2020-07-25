@@ -51,3 +51,21 @@ class Appointment{
   Map<String, dynamic> toJson() =>
     {'id': id, 'date': date, 'time': time};
 }
+
+class User{
+  String name;
+  String address;
+  String phone;
+  String email;
+
+  User({this.name, this.address, this.phone, this.email});
+  User.fromJson(Map<String, dynamic> json)
+    : this(
+      name: json['name'].toString(), 
+      address: json['address'].toString(), 
+      phone: json['phone'].toString(), 
+      email: json['email'].toString(), 
+    );
+  Map<String, dynamic> toJson() =>
+    {'name': name, 'address': address, 'phone': phone, 'email': email};
+}
