@@ -1,22 +1,34 @@
+import 'package:eazeetailor/models/class.dart';
+import 'package:eazeetailor/services/data_service.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 
 
 class OrderScreen extends StatefulWidget {
-   List orderDetails;
-
-  OrderScreen(this.orderDetails);
+ 
 
   @override
   _OrderScreenState createState() => _OrderScreenState();
 }
 
 class _OrderScreenState extends State<OrderScreen> {
-  
+  List<Order> _order;  
 
   @override
   Widget build(BuildContext context) {
+    return FutureBuilder<List<Order>>(
+      future: dataService.getOrderList(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          _order = snapshot.data;
+          return _buildScreen();
+        }
+        return _buildFetchingDataScreen();
+      });
+  }
+
+  Scaffold _buildScreen() {
     return Scaffold(
       appBar: AppBar(
         elevation: 5,
@@ -38,19 +50,21 @@ class _OrderScreenState extends State<OrderScreen> {
       body: Container(
         padding: EdgeInsets.only(top: 15),
         child: ListView.separated(
-          itemCount: widget.orderDetails.length,
+          itemCount: _order.length,
           separatorBuilder: (context, index) => Divider(color: Colors.black),
           itemBuilder: (context, index) {
             return new Dismissible(
-              key: Key(widget.orderDetails[index].toString()),
+              key: Key(_order[index].toString()),
               background: Container(
                   color: Colors.red,
                   alignment: AlignmentDirectional.centerEnd,
                   child: Icon(Icons.delete, color: Colors.white)
                 ),
               direction: DismissDirection.endToStart,
-              onDismissed: (direction){
-                widget.orderDetails.removeAt(index);
+              onDismissed: (direction) async {
+                await dataService.deleteOrder(
+                    id: _order[index].id.toString());
+                    setState(() => _order.removeAt(index));
                 Scaffold.of(context).showSnackBar(
                 new SnackBar(
                 content : new Text("Order has been deleted"),
@@ -63,9 +77,9 @@ class _OrderScreenState extends State<OrderScreen> {
                subtitle: Wrap(
                  children: <Widget>[
                    Text( 
-                     'Design:'+' '+ widget.orderDetails[index].design.toString() +
-                     '\nSize:' + ' '+ widget.orderDetails[index].size.toString() +
-                     '\nFabric:'+ ' '+ widget.orderDetails[index].fabric.toString(),
+                     'Design:'+' '+ _order[index].design.toString() +
+                     '\nSize:' + ' '+ _order[index].size.toString() +
+                     '\nFabric:'+ ' '+ _order[index].fabric.toString(),
                    ),
                  ]
                ),
@@ -79,4 +93,21 @@ class _OrderScreenState extends State<OrderScreen> {
       ),
     );
   }
+
+  Scaffold _buildFetchingDataScreen() {
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            CircularProgressIndicator(),
+            SizedBox(height: 50),
+            Text('Fetching todo... Please wait'),
+          ],
+        ),
+      ),
+    );
+  }
 }
+
+

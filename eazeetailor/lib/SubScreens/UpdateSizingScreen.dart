@@ -162,7 +162,7 @@ class _UpdateSizeScreenState extends State<UpdateSizeScreen> {
             icon: Icon(Icons.check_circle),
             onPressed: () async {
           final updateSize = await dataService.updatesize(
-            id: widget.memberSize.id,
+            id: widget.memberSize.id.toString(),
             members: Members(name: widget.memberSize.name, sleeve: widget.memberSize.sleeve, chest: widget.memberSize.chest ,body: widget.memberSize.body ),
           ); 
           Navigator.pop(context, updateSize);
